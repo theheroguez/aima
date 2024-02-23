@@ -2,6 +2,7 @@ package com.theheroguez.aima.agents;
 
 import com.theheroguez.aima.enums.Action;
 import com.theheroguez.aima.percepts.Percept;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Map;
  * TableDrivenAgent is an implementation of the Agent interface that uses a table
  * to determine the appropriate action based on the given percept.
  */
+@Component
 public class TableDrivenAgent implements Agent {
     private final Map<List<Percept<?, ?>>, Action> table;
     private final List<Percept<?, ?>> percepts;
