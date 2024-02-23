@@ -13,7 +13,7 @@ import java.util.List;
  * of percepts using a TableDrivenAgent and return a list of actions performed by the agent.
  */
 @RestController
-@RequestMapping("/tdd-agent")
+@RequestMapping("/table-driven-agent")
 public class TableDrivenAgentController {
 
     private final Processor processor;
