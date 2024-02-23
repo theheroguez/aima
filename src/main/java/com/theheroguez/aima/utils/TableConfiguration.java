@@ -42,4 +42,15 @@ public class TableConfiguration {
 
         return table;
     }
+
+    @Bean
+    public Map<Percept<?, ?>, Action> rulesSimpleReflexAgent() {
+        Map<Percept<?, ?>, Action> rules = new HashMap<>();
+        rules.put(new Percept<>(Location.A, Status.CLEAN), Action.RIGHT);
+        rules.put(new Percept<>(Location.A, Status.DIRTY), Action.CLEAN);
+        rules.put(new Percept<>(Location.B, Status.CLEAN), Action.LEFT);
+        rules.put(new Percept<>(Location.B, Status.DIRTY), Action.CLEAN);
+
+        return rules;
+    }
 }
