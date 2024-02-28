@@ -1,11 +1,14 @@
 package com.theheroguez.aima.controllers;
 
-import com.theheroguez.aima.agents.SimpleReflexAgent;
-import com.theheroguez.aima.services.Processor;
+import com.theheroguez.aima.Percept;
+import com.theheroguez.aima.enums.Location;
+import com.theheroguez.aima.enums.Status;
+import com.theheroguez.aima.environment.vacuum.VacuumSimpleReflexAgent;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,10 +18,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/simple-reflex-agent")
 public class SimpleReflexAgentController {
-    private final Processor processor;
+    private final VacuumSimpleReflexAgent agent;
 
-    public SimpleReflexAgentController(SimpleReflexAgent agent) {
-        this.processor = new Processor(agent);
+    public SimpleReflexAgentController(VacuumSimpleReflexAgent agent) {
+        this.agent = agent;
     }
 
     /**
@@ -28,6 +31,16 @@ public class SimpleReflexAgentController {
      */
     @GetMapping("/process")
     public List<String> process() {
-        return processor.process();
+        List<Percept<Location, Status>> percepts = new ArrayList<>();
+        percepts.add(new Percept<>(Location.A, Status.DIRTY));
+        percepts.add(new Percept<>(Location.B, Status.DIRTY));
+        percepts.add(new Percept<>(Location.A, Status.CLEAN));
+        percepts.add(new Percept<>(Location.B, Status.CLEAN));
+        percepts.add(new Percept<>(Location.B, Status.DIRTY));
+
+        return percepts
+                .stream()
+                .map(percept -> "Action: " + agent.apply(percept))
+                .toList();
     }
 }
