@@ -1,13 +1,14 @@
 package com.theheroguez.aima.agents;
 
-import com.theheroguez.aima.enums.Action;
-import com.theheroguez.aima.percepts.Percept;
+import java.util.Optional;
+import java.util.function.Function;
 
-import java.util.List;
-import java.util.Map;
-
-public interface Agent {
-    public Action process(Percept<?, ?> percept);
-
-    public Action lookUp(List<Percept<?, ?>> percepts, Map<List<Percept<?, ?>>, Action> table);
+/**
+ * The Agent interface represents an agent that processes percepts and produces actions based on those percepts.
+ *
+ * @param <P> the type of percepts the agent receives
+ * @param <A> the type of actions the agent produces
+ */
+public interface Agent<P, A> extends Function<P, Optional<A>> {
+    Optional<A> apply(P percept);
 }
