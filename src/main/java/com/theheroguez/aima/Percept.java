@@ -1,4 +1,4 @@
-package com.theheroguez.aima.percepts;
+package com.theheroguez.aima;
 
 import lombok.Getter;
 import lombok.Setter;
