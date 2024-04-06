@@ -14,4 +14,12 @@ public class VacuumState implements State {
         this.currentLocation = currentLocation;
         this.currentState = currentState;
     }
+
+    @Override
+    public String toString() {
+        return "VacuumState{" +
+                "currentLocation=" + currentLocation +
+                ", currentState=" + currentState +
+                '}';
+    }
 }

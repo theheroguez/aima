@@ -3,6 +3,7 @@ package com.theheroguez.aima.utils;
 import com.theheroguez.aima.*;
 import com.theheroguez.aima.enums.Location;
 import com.theheroguez.aima.enums.Status;
+import com.theheroguez.aima.environment.vacuum.VacuumModel;
 import com.theheroguez.aima.environment.vacuum.VacuumState;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,5 +53,10 @@ public class TableConfiguration {
         rules.add(new Rule<>(MOVE_LEFT, state -> ((VacuumState) state).getCurrentState().equals(Status.CLEAN) && ((VacuumState) state).getCurrentLocation().equals(Location.B)));
 
         return rules;
+    }
+
+    @Bean
+    public VacuumModel vacuumModelFactory() {
+        return new VacuumModel();
     }
 }
